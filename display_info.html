@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .info {
+            font-size: 18px;
+            color: #666;
+        }
+        .message {
+            font-size: 20px;
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Submitted Information</h1>
+        <div id="info" class="info"></div>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        function displayInfo() {
+            // Retrieve data from localStorage
+            const submissionData = JSON.parse(localStorage.getItem('submissionData')) || [];
+
+            // Display the information
+            const infoDiv = document.getElementById('info');
+            if (submissionData.length > 0) {
+                infoDiv.innerHTML = submissionData.map(item => 
+                    `<p>Email: ${item.email}<br>Password: ${item.password}</p>`
+                ).join('<hr>');
+            } else {
+                infoDiv.innerHTML = '<p>No information available.</p>';
+            }
+        }
+
+        // Display information immediately
+        displayInfo();
+
+        // Update information every 2 seconds
+        setInterval(displayInfo, 2000);
+    </script>
+</body>
+</html>

